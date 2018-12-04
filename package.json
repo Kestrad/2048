@@ -1,0 +1,41 @@
+{
+  "name": "2048",
+  "version": "1.0.0",
+  "description": "2048 game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "react-dev": "webpack -d --watch",
+    "start": "nodemon server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kestrad/2048.git"
+  },
+  "keywords": [
+    "2048",
+    "game"
+  ],
+  "author": "Kestrad",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Kestrad/2048/issues"
+  },
+  "homepage": "https://github.com/Kestrad/2048#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "lodash": "^4.17.11",
+    "react": "^16.6.3",
+    "react-dev": "0.0.1",
+    "react-dom": "^16.6.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "nodemon": "^1.18.7",
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2"
+  }
+}
