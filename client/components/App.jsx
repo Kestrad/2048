@@ -8,7 +8,7 @@ class App extends React.Component {
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.state = {
       squares: Array(16).fill(null),
-      squareState: Array(16).fill(false),
+      squareHasMerged: Array(16).fill(false),
       win: false,
       lose: false,
       addTile: false,
@@ -33,14 +33,14 @@ class App extends React.Component {
         this.moveThisWay("right");
       }
     } else {
-      alert('game has ended');
+      console.log("game has ended");
     }
   }
 
   moveThisWay(dir) {
     console.log(dir);
     let newValArr = [...this.state.squares];
-    let newStateArr = [...this.state.squareState];
+    let newStateArr = [...this.state.squareHasMerged];
 
     if (dir === "up") {
       let moved = false; 
@@ -54,12 +54,16 @@ class App extends React.Component {
               let above = square-4;
               if (above >= 0 && !newValArr[above]) {
                 newValArr[above] = newValArr[square];
+                newStateArr[above] = newStateArr[square];
                 newValArr[square] = null;
+                newStateArr[square] = false;
                 moved = true;
                 validMove = true;
-              } else if (above >=0 && newValArr[above] === newValArr[square]) {
+              } else if (above >=0 && newValArr[above] === newValArr[square] && !newStateArr[square] && !newStateArr[above]) {
                 newValArr[above] = newValArr[above]*2;
+                newStateArr[above] = true;
                 newValArr[square] = null;
+                newStateArr[square] = false;
                 moved = true;
                 validMove = true;
               }
@@ -86,12 +90,16 @@ class App extends React.Component {
               let below = square+4;
               if (below <= 15 && !newValArr[below]) {
                 newValArr[below] = newValArr[square];
+                newStateArr[below] = newStateArr[square];
                 newValArr[square] = null;
+                newStateArr[square] = false;
                 moved = true;
                 validMove = true;
-              } else if (below <= 15 && newValArr[below] === newValArr[square]) {
+              } else if (below <= 15 && newValArr[below] === newValArr[square] && !newStateArr[square] && !newStateArr[below]) {
                 newValArr[below] = newValArr[below]*2;
+                newStateArr[below] = true;
                 newValArr[square] = null;
+                newStateArr[square] = false;
                 moved = true;
                 validMove = true;
               }
@@ -118,12 +126,16 @@ class App extends React.Component {
               let left = square-1;
               if (left >= row*4 && !newValArr[left]) {
                 newValArr[left] = newValArr[square];
+                newStateArr[left] = newStateArr[square];
                 newValArr[square] = null;
+                newStateArr[square] = false;
                 moved = true;
                 validMove = true;
-              } else if (left >= row*4 && newValArr[left] === newValArr[square]) {
+              } else if (left >= row*4 && newValArr[left] === newValArr[square] && !newStateArr[square] && !newStateArr[left]) {
                 newValArr[left] = newValArr[left]*2;
+                newStateArr[left] = true;
                 newValArr[square] = null;
+                newStateArr[square] = false;
                 moved = true;
                 validMove = true;
               }
@@ -150,12 +162,16 @@ class App extends React.Component {
               let right = square+1;
               if (right <= row*4+3 && !newValArr[right]) {
                 newValArr[right] = newValArr[square];
+                newStateArr[right] = newStateArr[square];
                 newValArr[square] = null;
+                newStateArr[square] = false;
                 moved = true;
                 validMove = true;
-              } else if (right <= row*4+3 && newValArr[right] === newValArr[square]) {
+              } else if (right <= row*4+3 && newValArr[right] === newValArr[square] && !newStateArr[square] && !newStateArr[right]) {
                 newValArr[right] = newValArr[right]*2;
+                newStateArr[right] = true;
                 newValArr[square] = null;
+                newStateArr[square] = false;
                 moved = true;
                 validMove = true;
               }
